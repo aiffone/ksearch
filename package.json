@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/onifademola/ksearch#readme",
   "dependencies": {
+    "@material-ui/core": "^5.0.0-alpha.16",
     "config": "^3.3.2",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",

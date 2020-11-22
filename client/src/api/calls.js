@@ -6,7 +6,7 @@ const Call = async ( Method, Token, Url, Data, ContentType = null ) => {
     method: Method,
     url: Url,
     data: Data,
-    headers: { "x-auth-token": Token, "content-type": ContentType == null ? "application/json" : ContentType },
+    headers: { "content-type": ContentType == null ? "application/json" : ContentType },
   })
     .then((res) => {
       //console.log(`call token: ${Token}, call method: ${Method}, call url: ${Url}, call data: ${Data}.`);
