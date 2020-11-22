@@ -9,7 +9,7 @@ const Call = async ( Method, Token, Url, Data, ContentType = null ) => {
     headers: { "content-type": ContentType == null ? "application/json" : ContentType },
   })
     .then((res) => {
-      //console.log(`call token: ${Token}, call method: ${Method}, call url: ${Url}, call data: ${Data}.`);
+      // console.log(`call token: ${Token}, call method: ${Method}, call url: ${Url}, call data: ${Data}.`);
       // console.log(`call response: ${res.data}`);
       return res;      
     })

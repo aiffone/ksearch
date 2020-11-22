@@ -4,7 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
-import User from './user/user.view';
+import User from "./user/user.view";
 
 const Layout = () => {
   return (
@@ -13,7 +13,7 @@ const Layout = () => {
       <Container fixed>
         <Typography
           component="div"
-          style={{ backgroundColor: "#cfe8fc", height: "100vh" }}
+          style={{ backgroundColor: "#cfe8fc" }}
           children = {
             <User />
           }
