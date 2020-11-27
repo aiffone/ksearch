@@ -1,7 +1,38 @@
 const express = require("express");
 const router = express.Router();
+const userData = require("../config/localData");
 
 const User = require("../models/User");
+
+router.get("/local", async (req, res) => {
+  try {
+    res.json(userData);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.post("/local/search", async (req, res) => {
+  const val = req.body.searchTerm.toLocaleLowerCase();
+  var newList = [];
+  try {
+    if (val.length > 0) {
+      userData.forEach(item => {
+        if (item.firstName.toLocaleLowerCase().includes(val) || item.lastName.toLocaleLowerCase().includes(val)) {
+          newList.push(item);
+        }
+      });
+    }
+
+    // const result = userData.find(query => query.firstName === val || query.lastName === val);
+
+    res.json(newList);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -9,18 +40,11 @@ router.get("/", async (req, res) => {
     res.json(users);
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Sevrer Error");
+    res.status(500).send("Server Error");
   }
 });
 
 router.post("/search", async (req, res) => {
-  const [name] = req.body.searchTerm;
-  // const query = {
-  //   $or: [
-  //     { firstName: { $regex: /${req.body.searchTerm}/i } },
-  //     { lastName: { $regex: /${req.body.searchTerm}/i } },
-  //   ],
-  // };
   const query = {
     $or: [
       { firstName: req.body.searchTerm },
@@ -33,7 +57,7 @@ router.post("/search", async (req, res) => {
     res.json(users);
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Sevrer Error");
+    res.status(500).send("Server Error");
   }
 });
 
