@@ -14,12 +14,16 @@ router.get("/local", async (req, res) => {
 });
 
 router.post("/local/search", async (req, res) => {
-  const val = req.body.searchTerm.toLocaleLowerCase();
-  var newList = [];
+  const value = req.body.searchTerm;
+  let newList = [];
   try {
-    if (val.length > 0) {
+    if (value.length > 0) {
       userData.forEach(item => {
-        if (item.firstName.toLocaleLowerCase().includes(val) || item.lastName.toLocaleLowerCase().includes(val)) {
+        if (
+          item.firstName.toLocaleLowerCase().includes(value)
+          || item.lastName.toLocaleLowerCase().includes(value)
+          || item.email.toLocaleLowerCase().includes(value)
+        ) {
           newList.push(item);
         }
       });
