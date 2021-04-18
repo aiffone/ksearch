@@ -18,47 +18,21 @@ router.post("/local/search", async (req, res) => {
   let newList = [];
   try {
     if (value.length > 0) {
-      userData.forEach(item => {
+      userData.forEach((item) => {
         if (
-          item.firstName.toLocaleLowerCase().includes(value)
-          || item.lastName.toLocaleLowerCase().includes(value)
-          || item.email.toLocaleLowerCase().includes(value)
+          item.firstName.toLocaleLowerCase().includes(value) ||
+          item.lastName.toLocaleLowerCase().includes(value) ||
+          item.email.toLocaleLowerCase().includes(value) ||
+          item.gender.toLocaleLowerCase().includes(value) ||
+          item.address.toLocaleLowerCase().includes(value) ||
+          item.buzzWord.toLocaleLowerCase().includes(value) ||
+          item.age === value
         ) {
           newList.push(item);
         }
       });
     }
-
-    // const result = userData.find(query => query.firstName === val || query.lastName === val);
-
     res.json(newList);
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-router.get("/", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-router.post("/search", async (req, res) => {
-  const query = {
-    $or: [
-      { firstName: req.body.searchTerm },
-      { lastName: req.body.searchTerm },
-    ],
-  };
-  console.log(query)
-  try {
-    const users = await User.find(query);
-    res.json(users);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
