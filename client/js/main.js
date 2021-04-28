@@ -1,7 +1,9 @@
+const serverUrl = "http://localhost:5001/api/users";
+
 const getData = () => {
   $.ajax({
     type: "GET",
-    url: "http://localhost:5000/api/users/local",
+    url: serverUrl + "/local",
     dataType: "json",
     success: function (result) {
       console.log(result);
@@ -49,11 +51,11 @@ const getData = () => {
 
 const getDataWithParam = (arg) => {
   $.ajax({
-    type: "POST",
-    url: "http://localhost:5000/api/users/local/search",
+    type: "GET",
+    url: `${serverUrl}/local/search?searchTerm=${arg}`,
     dataType: "json",
-    contentType: "application/json",
-    data: JSON.stringify({ searchTerm: arg }),
+    // contentType: "application/json",
+    // data: JSON.stringify({ searchTerm: arg }),
     success: function (result) {
       console.log(result);
       if (result.length < 1) {

@@ -13,8 +13,8 @@ router.get("/local", async (req, res) => {
   }
 });
 
-router.post("/local/search", async (req, res) => {
-  const value = req.body.searchTerm;
+router.get("/local/search", async (req, res) => {
+  const value = req.query.searchTerm;
   let newList = [];
   try {
     if (value.length > 0) {
